@@ -1,8 +1,8 @@
 {
   "batch_id": 3,
-  "drift_detected": true,
-  "drift_score": 1.0,
-  "drifted_features": 18,
+  "drift_detected": false,
+  "drift_score": 0.0556,
+  "drifted_features": 1,
   "total_features": 18,
-  "retrain_needed": true
+  "retrain_needed": false
 }

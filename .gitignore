@@ -34,9 +34,26 @@ api_server.log
 
 # IDE / OS
 .idea/
-.vscode/
 .DS_Store
 Thumbs.db
 
 # Claude Code local state
 .claude/
+
+# Playwright MCP cache
+.playwright-mcp/
+
+# Runtime traffic-generator drift summaries (we only keep the canonical 5)
+artifacts/drift_reports/batch_5_summary.json
+artifacts/drift_reports/batch_6_summary.json
+artifacts/drift_reports/batch_7_summary.json
+artifacts/drift_reports/batch_8_summary.json
+artifacts/drift_reports/batch_9_summary.json
+artifacts/drift_reports/batch_1[0-9]_summary.json
+artifacts/drift_reports/batch_2[0-9]_summary.json
+artifacts/drift_reports/batch_3[0-9]_summary.json
+artifacts/drift_reports/batch_4[0-9]_summary.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
+branch_structure.json
