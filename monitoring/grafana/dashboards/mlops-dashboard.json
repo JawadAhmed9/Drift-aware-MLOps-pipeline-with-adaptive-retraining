@@ -1,0 +1,149 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "name": "Retraining events",
+        "datasource": "Prometheus",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "expr": "changes(mlops_retraining_events_total[1m]) > 0",
+        "titleFormat": "Model retrained",
+        "tagKeys": "service"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Total Predictions",
+      "gridPos": {"x": 0, "y": 0, "w": 6, "h": 4},
+      "targets": [
+        {"expr": "sum(mlops_predictions_total)", "refId": "A"}
+      ],
+      "options": {"colorMode": "value", "graphMode": "area", "textMode": "auto"}
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Latest Drift Score",
+      "gridPos": {"x": 6, "y": 0, "w": 6, "h": 4},
+      "targets": [
+        {"expr": "mlops_drift_score", "refId": "A"}
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "orange", "value": 0.3},
+              {"color": "red", "value": 0.7}
+            ]
+          },
+          "min": 0,
+          "max": 1
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Retraining Events",
+      "gridPos": {"x": 12, "y": 0, "w": 6, "h": 4},
+      "targets": [
+        {"expr": "mlops_retraining_events_total", "refId": "A"}
+      ]
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Last Retrain (UTC)",
+      "gridPos": {"x": 18, "y": 0, "w": 6, "h": 4},
+      "targets": [
+        {"expr": "mlops_last_retrain_timestamp_seconds", "refId": "A"}
+      ],
+      "fieldConfig": {
+        "defaults": {"unit": "dateTimeAsIso"}
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Drift Score over Time",
+      "gridPos": {"x": 0, "y": 4, "w": 12, "h": 8},
+      "targets": [
+        {"expr": "mlops_drift_score", "refId": "A", "legendFormat": "drift_score"},
+        {"expr": "mlops_drifted_features", "refId": "B", "legendFormat": "drifted_features"}
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {"drawStyle": "line", "lineInterpolation": "stepAfter", "fillOpacity": 20}
+        }
+      },
+      "thresholds": {
+        "steps": [
+          {"color": "green", "value": null},
+          {"color": "red", "value": 0.3}
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "type": "histogram",
+      "title": "Prediction Confidence Distribution",
+      "gridPos": {"x": 12, "y": 4, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "sum by (le) (rate(mlops_prediction_confidence_bucket[5m]))",
+          "refId": "A",
+          "format": "heatmap"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "Predictions per second (by class)",
+      "gridPos": {"x": 0, "y": 12, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "rate(mlops_predictions_total[1m])",
+          "refId": "A",
+          "legendFormat": "churn_label={{churn_label}}"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Drift Reports (retrain_needed split)",
+      "gridPos": {"x": 12, "y": 12, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "rate(mlops_drift_reports_total[1m])",
+          "refId": "A",
+          "legendFormat": "retrain_needed={{retrain_needed}}"
+        }
+      ]
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": ["mlops", "drift", "telco-churn"],
+  "templating": {"list": []},
+  "time": {"from": "now-30m", "to": "now"},
+  "timepicker": {},
+  "timezone": "",
+  "title": "MLOps – Telco Churn Drift & Retraining",
+  "uid": "mlops-telco-churn",
+  "version": 1,
+  "weekStart": ""
+}

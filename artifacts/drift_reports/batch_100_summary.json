@@ -1,0 +1,8 @@
+{
+  "batch_id": 100,
+  "drift_detected": true,
+  "drift_score": 1.0,
+  "drifted_features": 18,
+  "total_features": 18,
+  "retrain_needed": true
+}

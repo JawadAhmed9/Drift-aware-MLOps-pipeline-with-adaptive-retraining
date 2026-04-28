@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# MLflow local store (use Model Registry / cloud backend in CI)
+mlruns/
+mlartifacts/
+
+# Trained model binaries (regenerable; tracked in MLflow Model Registry)
+models/*.pkl
+models/best_model_info.json
+
+# Dataset (Kaggle license — download separately)
+data/WA_Fn-UseC_-Telco-Customer-Churn.csv
+
+# Heavy regenerable Evidently HTML reports
+artifacts/drift_reports/*.html
+
+# Runtime logs
+*.log
+mlflow_server.log
+api_server.log
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Claude Code local state
+.claude/

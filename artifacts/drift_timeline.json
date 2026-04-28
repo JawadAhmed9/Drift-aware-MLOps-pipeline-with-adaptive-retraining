@@ -1,0 +1,108 @@
+{
+  "drift_summaries": [
+    {
+      "batch_id": 0,
+      "drift_detected": false,
+      "drift_score": 0.0,
+      "drifted_features": 0,
+      "total_features": 18,
+      "retrain_needed": false
+    },
+    {
+      "batch_id": 1,
+      "drift_detected": false,
+      "drift_score": 0.0,
+      "drifted_features": 0,
+      "total_features": 18,
+      "retrain_needed": false
+    },
+    {
+      "batch_id": 2,
+      "drift_detected": true,
+      "drift_score": 1.0,
+      "drifted_features": 18,
+      "total_features": 18,
+      "retrain_needed": true
+    },
+    {
+      "batch_id": 3,
+      "drift_detected": true,
+      "drift_score": 1.0,
+      "drifted_features": 18,
+      "total_features": 18,
+      "retrain_needed": true
+    },
+    {
+      "batch_id": 4,
+      "drift_detected": true,
+      "drift_score": 1.0,
+      "drifted_features": 18,
+      "total_features": 18,
+      "retrain_needed": true
+    }
+  ],
+  "performance_no_retrain": [
+    {
+      "batch_id": 0,
+      "accuracy": 0.79,
+      "f1_score": 0.563,
+      "is_drifted": false
+    },
+    {
+      "batch_id": 1,
+      "accuracy": 0.7651,
+      "f1_score": 0.4407,
+      "is_drifted": false
+    },
+    {
+      "batch_id": 2,
+      "accuracy": 0.7544,
+      "f1_score": 0.4733,
+      "is_drifted": true
+    },
+    {
+      "batch_id": 3,
+      "accuracy": 0.7046,
+      "f1_score": 0.2655,
+      "is_drifted": true
+    },
+    {
+      "batch_id": 4,
+      "accuracy": 0.6947,
+      "f1_score": 0.3256,
+      "is_drifted": true
+    }
+  ],
+  "performance_retrain": [
+    {
+      "batch_id": 0,
+      "accuracy": 0.79,
+      "f1_score": 0.563,
+      "is_drifted": false
+    },
+    {
+      "batch_id": 1,
+      "accuracy": 0.7651,
+      "f1_score": 0.4407,
+      "is_drifted": false
+    },
+    {
+      "batch_id": 2,
+      "accuracy": 0.8264633347012866,
+      "f1_score": 0.5253167732021169,
+      "is_drifted": true
+    },
+    {
+      "batch_id": 3,
+      "accuracy": 0.7778436799417313,
+      "f1_score": 0.34236590338137074,
+      "is_drifted": true
+    },
+    {
+      "batch_id": 4,
+      "accuracy": 0.7468782246948359,
+      "f1_score": 0.38713410382290686,
+      "is_drifted": true
+    }
+  ]
+}

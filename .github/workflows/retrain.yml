@@ -1,0 +1,39 @@
+name: Automated Model Retraining
+
+on:
+  repository_dispatch:
+    types: [drift_detected]
+  workflow_dispatch: # Allows manual trigger if needed
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements_api.txt
+
+    - name: Run Retraining Script
+      env:
+        MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+      run: |
+        python retrain.py --auto
+
+    - name: Commit Updated Model and Info
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add models/best_model.pkl models/best_model_info.json artifacts/retrain_result.json
+        git commit -m "Automated model retrain on drift detection" || echo "No changes to commit"
+        git push

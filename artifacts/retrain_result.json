@@ -1,0 +1,9 @@
+{
+  "status": "retrained",
+  "metrics": {
+    "retrain_accuracy": 0.8005677785663591,
+    "retrain_f1": 0.5670261941448382,
+    "retrain_auc": 0.8414089746570566
+  },
+  "batch_id": -1
+}
